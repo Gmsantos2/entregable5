@@ -14,9 +14,10 @@ const PokemonDetail = () => {
       .catch(err => console.log(err))
   }, [])
   return (
-    <section className="grid grid-rows-[1fr_auto] gap-20 pb-10" >
+    <section >
       <Header />
-      <article className="grid gap-1 max-sm:w-[300px] w-[500px] max-w-[800px] border-2 border-slate-200 shadow-xl rounded-lg text-center justify-self-center ">
+      <section className="grid h-full" >
+      <article className="grid justify-self-center gap-1 max-sm:w-[300px] w-[500px] max-w-[800px] shadow-xl rounded-lg text-center pt-24">
         <header className={`bg-gradient-to-b ${gradientsByType[pokemonInfo?.types[0].type.name]} relative h-[140px] rounded-t-lg`} >
           <img className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[300px] p-11" src={pokemonInfo?.sprites.other["official-artwork"].front_default} alt="" />
         </header>
@@ -62,6 +63,7 @@ const PokemonDetail = () => {
           </ul>
         </section>
       </article>
+      </section>
     </section>
   )
 }

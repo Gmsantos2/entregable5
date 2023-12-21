@@ -22,14 +22,14 @@ const Pokedex = () => {
     axios.get(url)
       .then(({ data }) => {
 
-        if(url.includes("type")){
+        if (url.includes("type")) {
           const pokemonsFormatted = data.pokemon.map((pokemon) => pokemon.pokemon);
           setAllPokemons(pokemonsFormatted);
-        }else{
+        } else {
           setAllPokemons(data.results)
         }
       }
-        )
+      )
       .catch((err) => console.log(err))
   }
 
@@ -48,36 +48,39 @@ const Pokedex = () => {
     <section>
       <Header />
       <main >
-        <div className="pb-4 pl-10">
-        <p className="text-lg">
-          <b className="text-red-600 font-bold ">Welcome {trainerName}</b>
-          , here can you find your favorite pokemons
-        </p>
+        <div className="pb-4 justify-self-center pl-6">
+          <p className="text-lg p-4 font-inter">
+            <b className="text-red-600 font-bold">Welcome {trainerName}</b>
+            , here can you find your favorite pokemons
+          </p>
         </div>
-        
-        <form 
-        className="pl-10 grid grid-cols-2 pt-1 pr-2"
-        onSubmit={handleSubmit}>
-          <div  >
+
+        <form
+          className="grid grid-cols-2 max-sm:grid-cols-1 max-sm:gap-2 pl-10 pr-10 gap-3 xl:max-w-[1200px] xl:justify-center  xl:mx-auto "
+          onSubmit={handleSubmit}>
+          <div className="grid grid-cols-3 max-sm:max-w-[390px] " >
             <input
-              className="p-2 max-sm:w-[140px] text-black/35 text-base font-medium border-black-400/ border-2 pt-2 pb-2 pl-6 pr-6"
+              className="col-span-2  text-black/35 text-base font-medium shadow-xl pt-2 pb-2 pl-6 pr-6"
               name="pokemonName"
               placeholder="Search pokemon..." type="text" />
-            <button
-            className="max-sm:w-[65px] bg-red-400 text-white p-2 font-bold "
-            >Search</button>
-            </div>
-          <select 
-          className="p-2 max-sm:w-[150px] text-black/35 text-base font-medium border-black-400/ border-2 pt-2 pb-2 pl-6 pr-6"
-          onChange={handleChangeType}>
+           
+              <button
+                className="w-full bg-red-500 text-white p-2 font-bold border-2 border-red-500"
+              >Search</button>
+            
+
+          </div>
+          <select
+            className="max-sm:text-center max-sm:place-self-stretch p-2 max-sm:max-w-[390px] text-black/80 text-base font-medium shadow-xl"
+            onChange={handleChangeType}>
             <option value="https://pokeapi.co/api/v2/pokemon?limit=1292">
               All pokemons
             </option>
             {
               types.map((type) => (
                 <option className="capitalize" key={type.name} value={type.url}>{type.name}</option>
-                ))
-              }
+              ))
+            }
           </select>
         </form>
         <PokemonList pokemons={pokemonsByName} />
